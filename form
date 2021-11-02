@@ -1,0 +1,35 @@
+<script>
+(function (){
+  var invalidDomains = ["@gmail.","@yahoo.","@hotmail.","@live.","@aol.","@outlook.","@abc.","@icloud."];
+
+  MktoForms2.whenReady(function (form){
+    form.onValidate(function(){
+      var email = form.vals().Email;
+      if(email){
+        if(!isEmailGood(email)) {
+          form.submittable(false);
+          var emailElem = form.getFormElem().find("#Email");
+          form.showErrorMessage("Please use your business email.", emailElem);
+        }else{
+          form.submittable(true);
+        }
+      }
+    });
+  });
+  
+  function isEmailGood(email) {
+    for(var i=0; i < invalidDomains.length; i++) {
+      var domain = invalidDomains[i];
+      if (email.indexOf(domain) != -1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+})();
+</script>
+
+<script src="//go.labster.com/js/forms2/js/forms2.min.js"></script>
+<form id="mktoForm_1253"></form>
+<script>MktoForms2.loadForm("//go.labster.com", "912-AKD-033", 1253);</script>
